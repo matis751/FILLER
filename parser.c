@@ -1,5 +1,16 @@
-#include "filler.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-oual <mel-oual@student.42.us.org>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/05 01:30:59 by mel-oual          #+#    #+#             */
+/*   Updated: 2020/05/05 02:07:28 by mel-oual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "filler.h"
 
 void			data_player(t_filler *filler)
 {
@@ -15,7 +26,6 @@ void			data_player(t_filler *filler)
 		free(line);
 	}
 }
-
 
 int				map_size(t_filler *filler)
 {
@@ -38,7 +48,6 @@ int				map_size(t_filler *filler)
 	return (0);
 }
 
-
 int				skip_line(void)
 {
 	char		*str;
@@ -51,7 +60,7 @@ int				skip_line(void)
 	return (0);
 }
 
-void		map_buff(t_filler *filler)
+void			map_buff(t_filler *filler)
 {
 	int			i;
 	char		*line;

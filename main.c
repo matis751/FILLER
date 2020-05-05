@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-oual <mel-oual@student.42.us.org>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/05 01:30:40 by mel-oual          #+#    #+#             */
+/*   Updated: 2020/05/05 03:14:26 by mel-oual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 int				search_score(t_piece piece, int y, int x, int **map)
@@ -22,7 +34,7 @@ int				search_score(t_piece piece, int y, int x, int **map)
 	return (score);
 }
 
-void	place_piece(t_filler filler, t_piece piece, int **map)
+void			place_piece(t_filler filler, t_piece piece, int **map)
 {
 	int			y;
 	int			x;
@@ -57,31 +69,27 @@ void			print_position(int res_y, int res_x)
 	ft_putchar('\n');
 }
 
-
-
-
-int main()
+int				main(void)
 {
-  t_filler filler;
-  t_piece piece;
-  int **map;
+	t_filler	filler;
+	t_piece		piece;
+	int			**map;
 
-  ft_bzero(&filler, sizeof(filler));
-  ft_bzero(&piece, sizeof(piece));
-  data_player(&filler);
-  while(map_size(&filler))
-  {
-    skip_line();
-    map_buff(&filler);
-    piece_size(&piece);
-    piece_buff(&piece);
-    map = build_map(filler);
-    build_warm(map, filler);
-	place_piece(filler, piece, map);
-	delete_piece(&piece);
-	delete_warm(map, filler);
-	ft_memdel((void**)&map);
-	delete_map(&filler);
-  }
-  
+	ft_bzero(&filler, sizeof(filler));
+	ft_bzero(&piece, sizeof(piece));
+	data_player(&filler);
+	while (map_size(&filler))
+	{
+		skip_line();
+		map_buff(&filler);
+		piece_size(&piece);
+		piece_buff(&piece);
+		map = build_map(filler);
+		build_warm(map, filler);
+		place_piece(filler, piece, map);
+		delete_piece(&piece);
+		delete_warm(map, filler);
+		ft_memdel((void**)&map);
+		delete_map(&filler);
+	}
 }

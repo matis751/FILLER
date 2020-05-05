@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   place_piece.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-oual <mel-oual@student.42.us.org>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/05 01:31:16 by mel-oual          #+#    #+#             */
+/*   Updated: 2020/05/05 03:18:45 by mel-oual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 void			piece_buff(t_piece *piece)
@@ -13,7 +25,6 @@ void			piece_buff(t_piece *piece)
 		piece->tab[i++] = piece_line;
 	}
 }
-
 
 int				place_first_point(t_filler filler, t_piece piece, int y, int x)
 {
@@ -53,15 +64,16 @@ int				**build_map(t_filler filler)
 	y = 0;
 	x = 0;
 	if ((tab = (int**)malloc(sizeof(int*) * filler.size.y)))
-	{
 		while (y < filler.size.y)
 		{
 			tab[y] = (int*)malloc(sizeof(int) * filler.size.x);
 			x = 0;
 			while (x < filler.size.x)
 			{
-				if (filler.players_info.mine && ft_toupper(filler.players_info.mine)
-						!= ft_toupper(filler.tab[y][x]) && filler.tab[y][x] != '.')
+				if (filler.players_info.mine &&
+					ft_toupper(filler.players_info.mine)
+						!= ft_toupper(filler.tab[y][x]) &&
+						filler.tab[y][x] != '.')
 					tab[y][x] = 0;
 				else
 					tab[y][x] = -1;
@@ -69,29 +81,28 @@ int				**build_map(t_filler filler)
 			}
 			y++;
 		}
-	}
 	return (tab);
 }
 
-void			warm_value(int **tab, t_position piece, int value, t_filler filler)
+void			warm_value(int **tab, t_position p, int value, t_filler f)
 {
-	if (piece.y > 0 && piece.x > 0 && tab[piece.y - 1][piece.x - 1] == -1)
-		tab[piece.y - 1][piece.x - 1] = value + 1;
-	if (piece.y > 0 && tab[piece.y - 1][piece.x] == -1)
-		tab[piece.y - 1][piece.x] = value + 1;
-	if (piece.y > 0 && (piece.x + 1) < filler.size.x && tab[piece.y - 1][piece.x + 1] == -1)
-		tab[piece.y - 1][piece.x + 1] = value + 1;
-	if (piece.x > 0 && tab[piece.y][piece.x - 1] == -1)
-		tab[piece.y][piece.x - 1] = value + 1;
-	if ((piece.x + 1) < filler.size.x && tab[piece.y][piece.x + 1] == -1)
-		tab[piece.y][piece.x + 1] = value + 1;
-	if (piece.x > 0 && (piece.y + 1) < filler.size.y && tab[piece.y + 1][piece.x - 1] == -1)
-		tab[piece.y + 1][piece.x - 1] = value + 1;
-	if ((piece.y + 1) < filler.size.y && tab[piece.y + 1][piece.x] == -1)
-		tab[piece.y + 1][piece.x] = value + 1;
-	if ((piece.y + 1) < filler.size.y && (piece.x + 1)
-			< filler.size.x && tab[piece.y + 1][piece.x + 1] == -1)
-		tab[piece.y + 1][piece.x + 1] = value + 1;
+	if (p.y > 0 && p.x > 0 && tab[p.y - 1][p.x - 1] == -1)
+		tab[p.y - 1][p.x - 1] = value + 1;
+	if (p.y > 0 && tab[p.y - 1][p.x] == -1)
+		tab[p.y - 1][p.x] = value + 1;
+	if (p.y > 0 && (p.x + 1) < f.size.x && tab[p.y - 1][p.x + 1] == -1)
+		tab[p.y - 1][p.x + 1] = value + 1;
+	if (p.x > 0 && tab[p.y][p.x - 1] == -1)
+		tab[p.y][p.x - 1] = value + 1;
+	if ((p.x + 1) < f.size.x && tab[p.y][p.x + 1] == -1)
+		tab[p.y][p.x + 1] = value + 1;
+	if (p.x > 0 && (p.y + 1) < f.size.y && tab[p.y + 1][p.x - 1] == -1)
+		tab[p.y + 1][p.x - 1] = value + 1;
+	if ((p.y + 1) < f.size.y && tab[p.y + 1][p.x] == -1)
+		tab[p.y + 1][p.x] = value + 1;
+	if ((p.y + 1) < f.size.y && (p.x + 1)
+			< f.size.x && tab[p.y + 1][p.x + 1] == -1)
+		tab[p.y + 1][p.x + 1] = value + 1;
 }
 
 void			build_warm(int **map, t_filler filler)

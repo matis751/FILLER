@@ -6,7 +6,7 @@
 /*   By: mel-oual <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 20:25:00 by mel-oual          #+#    #+#             */
-/*   Updated: 2019/05/09 06:01:04 by mel-oual         ###   ########.fr       */
+/*   Updated: 2020/05/05 03:29:21 by mel-oual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <limits.h>
 
 typedef unsigned char			t_char;
 typedef unsigned int			t_int;
-
-# define ANY2(x, y1, y2)		((x) == (y1) || (x) == (y2))
-# define ANY3(x, y1, y2, y3)	((x) == (y1) || (x) == (y2) || (x) == (y3))
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
